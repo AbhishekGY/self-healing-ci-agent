@@ -35,7 +35,7 @@ def list_tasks(
         query = query.filter(Task.completed == completed)
     if owner_id is not None:
         query = query.filter(Task.owner_id == owner_id)
-    query = query.order_by(Task.created_at.desc())
+    query = query.order_by(Task.id)
 
     items, total, page, per_page = paginate(query, page, per_page)
     return PaginatedResponse(items=items, total=total, page=page, per_page=per_page)

@@ -19,12 +19,16 @@ def test_create_task_invalid_owner(client):
     assert response.status_code == 404
 
 
-def test_list_tasks(client, sample_task):
+def test_list_tasks(client, sample_task, sample_user):
+    client.post(f"/tasks/?owner_id={sample_user['id']}", json={
+        "title": "Second task",
+        "priority": 1,
+    })
     response = client.get("/tasks/")
     assert response.status_code == 200
     data = response.json()
-    assert data["total"] >= 1
-    assert len(data["items"]) >= 1
+    assert data["total"] >= 2
+    assert data["items"][0]["title"] == "Second task"
 
 
 def test_list_tasks_filter_completed(client, sample_user):
