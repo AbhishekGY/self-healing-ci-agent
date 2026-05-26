@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from pydantic import BaseModel, EmailStr, Field
+from pydantic.fields import Undefined
 
 # --- User schemas ---
 
@@ -26,7 +27,7 @@ class UserResponse(BaseModel):
 class TaskCreate(BaseModel):
     title: str = Field(min_length=1, max_length=200)
     description: str | None = None
-    priority: int = Field(default=1, ge=1, le=5)
+    priority: int = Field(default=Undefined, ge=1, le=5)
 
 
 class TaskUpdate(BaseModel):
