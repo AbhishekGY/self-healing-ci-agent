@@ -21,7 +21,7 @@ def parse_date(date_string: str) -> datetime:
     ]
     for fmt in formats:
         try:
-            return datetime.strptime(date_string, fmt)
+            return datetime.strptime(date_string, fmt).isoformat()
         except ValueError:
             continue
     raise ValueError(f"Unable to parse date: {date_string}")
