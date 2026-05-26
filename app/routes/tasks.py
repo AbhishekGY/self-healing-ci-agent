@@ -32,7 +32,7 @@ def list_tasks(
 ):
     query = db.query(Task)
     if completed is not None:
-        query = query.filter(Task.completed == completed)
+        query = query.filter(Task.is_completed == completed)
     if owner_id is not None:
         query = query.filter(Task.owner_id == owner_id)
     query = query.order_by(Task.created_at.desc())

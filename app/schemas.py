@@ -32,7 +32,7 @@ class TaskCreate(BaseModel):
 class TaskUpdate(BaseModel):
     title: str | None = Field(default=None, min_length=1, max_length=200)
     description: str | None = None
-    completed: bool | None = None
+    is_completed: bool | None = None
     priority: int | None = Field(default=None, ge=1, le=5)
 
 
@@ -40,7 +40,7 @@ class TaskResponse(BaseModel):
     id: int
     title: str
     description: str | None
-    completed: bool
+    is_completed: bool
     priority: int
     created_at: datetime
     updated_at: datetime | None
