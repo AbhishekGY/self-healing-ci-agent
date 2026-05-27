@@ -27,11 +27,12 @@ def main():
         beta="managed-agents-2026-04-01",
     )
 
-    print(f"\nEnvironment registered successfully!")
+    print("\nEnvironment registered successfully!")
     print(f"  ID:  {environment.id}")
     print(f"  Key: {environment.key}")
-    print(f"\nSave these values. Run the worker with:")
-    print(f"  docker run -e ANTHROPIC_API_KEY=... -e ENVIRONMENT_ID={environment.id} -e GITHUB_TOKEN=... self-healing-sandbox")
+    print("\nSave these values. Run the worker with:")
+    print(f"  docker run -e ANTHROPIC_API_KEY=... -e ENVIRONMENT_ID={environment.id}"
+          " -e GITHUB_TOKEN=... self-healing-sandbox")
 
 
 if __name__ == "__main__":
