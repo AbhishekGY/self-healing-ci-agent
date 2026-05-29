@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-if [ -z "$ANTHROPIC_API_KEY" ]; then
-    echo "ERROR: ANTHROPIC_API_KEY not set"
+if [ -z "$ANTHROPIC_ENVIRONMENT_KEY" ]; then
+    echo "ERROR: ANTHROPIC_ENVIRONMENT_KEY not set"
     exit 1
 fi
 
-if [ -z "$ENVIRONMENT_ID" ]; then
-    echo "ERROR: ENVIRONMENT_ID not set"
+if [ -z "$ANTHROPIC_ENVIRONMENT_ID" ]; then
+    echo "ERROR: ANTHROPIC_ENVIRONMENT_ID not set"
     exit 1
 fi
 
