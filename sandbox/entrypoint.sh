@@ -12,9 +12,9 @@ if [ -z "$ANTHROPIC_ENVIRONMENT_ID" ]; then
 fi
 
 if [ -n "$GITHUB_TOKEN" ]; then
-    echo "$GITHUB_TOKEN" | gh auth login --with-token
+    echo "$GITHUB_TOKEN" | gh auth login --with-token 2>/dev/null || true
     echo "GitHub CLI authenticated"
 fi
 
 echo "Starting environment worker..."
-python /app/worker.py
+exec python -u /app/worker.py
