@@ -24,8 +24,8 @@ async def main():
         print("ERROR: Set ANTHROPIC_ENVIRONMENT_KEY and ANTHROPIC_ENVIRONMENT_ID")
         sys.exit(1)
 
-    print(f"Worker starting for environment {environment_id}")
-    print("Polling for sessions...")
+    print(f"Worker starting for environment {environment_id}", flush=True)
+    print("Polling for sessions...", flush=True)
 
     async with AsyncAnthropic(auth_token=environment_key) as client:
         await EnvironmentWorker(

@@ -29,21 +29,33 @@ def main():
         agent=agent_id,
         environment_id=env_id,
     )
-
     print(f"Session created: {session.id}")
-    print("Waiting for completion...")
 
+    print("Sending task to agent...")
+    client.beta.sessions.events.send(
+        session.id,
+        events=[
+            {
+                "type": "user.message",
+                "content": [
+                    {"type": "text", "text": "Run: echo 'Hello from sandbox'"}
+                ],
+            },
+        ],
+    )
+
+    print("Waiting for completion...")
     for _ in range(60):
         session = client.beta.sessions.retrieve(session.id)
-        if session.status in ("completed", "failed", "ended"):
+        if session.status in ("idle", "terminated"):
             break
         time.sleep(2)
 
     print(f"\nStatus: {session.status}")
-    if session.status in ("completed", "ended"):
+    if session.status == "idle":
         print("Worker test passed!")
     else:
-        print("Worker test failed — check worker logs")
+        print(f"Worker test failed — status: {session.status}")
         sys.exit(1)
 
 
